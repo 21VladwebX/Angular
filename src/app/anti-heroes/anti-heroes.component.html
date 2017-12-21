@@ -1,0 +1,34 @@
+<h2>My Anti Heroes</h2>
+<ul class="heroes">
+  <li *ngFor="let hero of AntiHeroes"
+    [class.selected]="hero === selectedAntiHeroes"
+    (click)="onSelect(hero)">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+    <button class="delete" title="delete antiHero"
+      (click)="deleteAntiHero(hero)">x</button>
+  </li>
+</ul>
+
+<div *ngIf="selectedAntiHeroes">
+
+  <h2>{{ selectedAntiHeroes.name  }} Details</h2>
+  <div><span>id: </span>{{selectedAntiHeroes.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedAntiHeroes.name" placeholder="name">
+    </label>
+
+  </div>
+
+</div>
+
+<div>
+  <label>Hero name:
+    <input #antiHeroName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="addAntiHero(antiHeroName.value); antiHeroName.value=''">
+    add
+  </button>
+
+</div>
