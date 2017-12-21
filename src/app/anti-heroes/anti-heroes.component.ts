@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import {Observable} from 'rxjs/Observable';
 
 import { AntiHeroes } from '../antiHeroes';
-import { ANTI_HEROES } from '../mock-antiHeroes';
+// import { ANTI_HEROES } from '../mock-antiHeroes';
 import { AntiHeroesService } from '../anti-heroes.service'
 
 @Component({
@@ -11,7 +14,7 @@ import { AntiHeroesService } from '../anti-heroes.service'
 })
 export class AntiHeroesComponent implements OnInit {
 
-  antiHeroes : AntiHeroes[] = [];
+  antiHeroes : AntiHeroes[] ;
 
   // selectedHero: Hero;
 
@@ -22,14 +25,19 @@ export class AntiHeroesComponent implements OnInit {
   //       .subscribe((antiHeroes: AntiHeroes ) => this.AntiHeroes = antiHeroes);
   // }
 
-    constructor(private antiHeroesService: AntiHeroesService){}
+    constructor(private antiHeroesService: AntiHeroesService,
+                private http: HttpClient){}
       
     ngOnInit(){
-          
-        this.antiHeroesService.getHeroes().subscribe((antiHeroes:AntiHeroes[]) => this.antiHeroes = antiHeroes);
+        // console.log(` antiHeroes is ${this.antiHeroes}`);
+        // this.antiHeroesService.getHeroes()
+        //   .subscribe((antiHeroes:AntiHeroes[]) => this.antiHeroes = antiHeroes);
+       
+       this.antiHeroesService.getHeroes().subscribe((antiHeroes:AntiHeroes[]) => this.antiHeroes = antiHeroes);
+        console.log(this.antiHeroes);  
     }
 
- 
+
   // onSelect(hero: Hero): void {
   //   this.selectedHero = hero;
   // }

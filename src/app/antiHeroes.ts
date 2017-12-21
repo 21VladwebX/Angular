@@ -1,4 +1,4 @@
 export class AntiHeroes {
-  id: number;
   name: string;
+  age: number;	
 }
